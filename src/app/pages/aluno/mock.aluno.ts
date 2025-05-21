@@ -1,4 +1,4 @@
-import { Aluno } from '../core/models/aluno.model';
+import { Aluno } from '../core/models/models/aluno.model';
 
 export const mockaluno: Aluno[] = [
   {

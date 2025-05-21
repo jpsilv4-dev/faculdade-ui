@@ -1,3 +1,7 @@
-<p>
-  professor-cadastro works!
-</p>
+<div class="card">
+  <h2>Cadastro de Professor</h2>
+  <input pInputText placeholder="Nome" [(ngModel)]="professor.nome" /><br />
+  <input pInputText placeholder="Email" [(ngModel)]="professor.email" /><br />
+  <input pInputText placeholder="Titulação" [(ngModel)]="professor.titulacao" /><br />
+  <button pButton label="Salvar" (click)="salvar()"></button>
+</div>

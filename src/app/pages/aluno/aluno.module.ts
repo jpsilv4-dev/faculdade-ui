@@ -1,21 +1,18 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { PrimengModule } from 'src/app/primeng.module';
 import { AlunoCadastroComponent } from './aluno-cadastro/aluno-cadastro.component';
 import { AlunoListaComponent } from './aluno-lista/aluno-lista.component';
 import { AlunoRoutingModule } from './aluno.routing';
+import { TableModule } from 'primeng/table'; // Exemplo com PrimeNG
 
 @NgModule({
+  declarations: [AlunoCadastroComponent, AlunoListaComponent],
   imports: [
     CommonModule,
+    FormsModule,
     AlunoRoutingModule,
-    PrimengModule,
-    FormsModule
-  ],
-  declarations: [
-    AlunoListaComponent,
-    AlunoCadastroComponent
+    TableModule
   ]
 })
 export class AlunoModule { }

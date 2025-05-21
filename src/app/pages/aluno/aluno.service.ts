@@ -1,31 +1,31 @@
 import { Injectable } from '@angular/core';
-import { Aluno } from '../core/models/aluno.model';
-import { mockaluno } from './mock.aluno';
+import { Aluno } from '../core/models/models/aluno.model';
+
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AlunoService {
-  private alunos: Aluno[] = structuredClone(mockaluno);
+  private alunos: Aluno[] = [];
+
   listar(): Aluno[] {
     return this.alunos;
   }
 
-  adicionar(aluno: Aluno): void {
-    const novoId = this.alunos.length > 0
-      ? Math.max(...this.alunos.map(a => a.idaluno ?? 0)) + 1
-      : 1;
+  salvar(aluno: Aluno): void {
+    if (aluno.id) {
+      const index = this.alunos.findIndex(a => a.id === aluno.id);
+      this.alunos[index] = aluno;
+    } else {
+      aluno.id = this.alunos.length + 1;
+      this.alunos.push(aluno);
+    }
+  }
 
-    const agora = new Date();
+  excluir(id: number): void {
+    this.alunos = this.alunos.filter(a => a.id !== id);
+  }
 
-    const novoAluno: Aluno = {
-      ...aluno,
-      idaluno: novoId,
-      datacriacao: new Date(),
-      dataalteracao: new Date(),
-      usucriacao: 'admin',
-      usualteracao: 'admin'
-    };
-
-    this.alunos.push(novoAluno);
+  buscarPorId(id: number): Aluno | undefined {
+    return this.alunos.find(a => a.id === id);
   }
 }

@@ -1,4 +1,7 @@
-export class Disciplina{
+export class Disciplina {
+  id(id: any) {
+    throw new Error('Method not implemented.');
+  }
   iddisciplina?: number;
   descricao?: string;
   status?: boolean;

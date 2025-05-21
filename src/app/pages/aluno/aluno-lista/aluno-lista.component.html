@@ -1,32 +1,13 @@
-<p-card header="Lista de Alunos">
-  <div class="flex flex-wrap col-12">
-    <p-button icon="pi pi-plus" routerLink="novo" label="Novo"></p-button>
-  </div>
-
-  <p-table [value]="alunos" styleClass="p-datatable-striped">
-    <ng-template pTemplate="header">
-      <tr>
-        <th>Nome</th>
-        <th>CPF</th>
-        <th>Status</th>
-        <th>Data Criação</th>
-        <th>Usuário Criação</th>
-        <th>Data Alteração</th>
-        <th>Usuário Alteração</th>
-      </tr>
-    </ng-template>
-
-    <ng-template pTemplate="body" let-aluno>
-      <tr>
-        <td>{{ aluno.nome }}</td>
-        <td>{{ aluno.cpf }}</td>
-        <td>{{ aluno.status ? 'Ativo' : 'Inativo' }}</td>
-        <td>{{ aluno.datacriacao | date : 'dd/MM/yyyy' }}</td>
-        <td>{{ aluno.usucriacao }}</td>
-        <td>{{ aluno.dataalteracao | date : 'dd/MM/yyyy' }}</td>
-        <td>{{ aluno.usualteracao }}</td>
-      </tr>
-    </ng-template>
-
-  </p-table>
-</p-card>
+<h2>Lista de Alunos</h2>
+<table>
+  <tr *ngFor="let aluno of alunos">
+    <td>{{ aluno.nome }}</td>
+    <td>{{ aluno.matricula }}</td>
+    <td>{{ aluno.email }}</td>
+    <td>
+      <button (click)="editar(aluno)">Editar</button>
+      <button (click)="excluir(aluno.id)">Excluir</button>
+    </td>
+  </tr>
+</table>
+<button routerLink="/aluno/cadastro">Novo Aluno</button>

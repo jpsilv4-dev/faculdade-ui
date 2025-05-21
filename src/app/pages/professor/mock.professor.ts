@@ -1,4 +1,4 @@
-import { Professor } from '../core/models/professor.model';
+import { Professor } from '../core/models/models/professor.model';
 
 export const mockaluno: Professor[] = [
   {

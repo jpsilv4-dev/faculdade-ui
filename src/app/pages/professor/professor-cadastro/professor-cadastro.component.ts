@@ -1,15 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { ProfessorService } from '../professor.service';
+import { Professor } from '../../core/models/models/professor.model';
 
 @Component({
   selector: 'app-professor-cadastro',
-  templateUrl: './professor-cadastro.component.html',
-  styleUrls: ['./professor-cadastro.component.css']
+  templateUrl: './professor-cadastro.component.html'
 })
-export class ProfessorCadastroComponent implements OnInit {
+export class ProfessorCadastroComponent {
+  professor: Professor = { id: 0, nome: '', email: '', titulacao: '' };
 
-  constructor() { }
+  constructor(private service: ProfessorService, private router: Router) { }
 
-  ngOnInit() {
+  salvar() {
+    this.service.cadastrar(this.professor).subscribe(() => {
+      this.router.navigate(['/professor']);
+    });
   }
-
 }

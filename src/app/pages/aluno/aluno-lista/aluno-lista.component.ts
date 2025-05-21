@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Aluno } from '../../core/models/models/aluno.model';
 import { AlunoService } from '../aluno.service';
-import { Aluno } from '../../core/models/aluno.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-aluno-lista',
@@ -8,9 +9,19 @@ import { Aluno } from '../../core/models/aluno.model';
 })
 export class AlunoListaComponent implements OnInit {
   alunos: Aluno[] = [];
-  constructor(private alunoService: AlunoService) { }
+
+  constructor(private alunoService: AlunoService, private router: Router) { }
 
   ngOnInit(): void {
     this.alunos = this.alunoService.listar();
+  }
+
+  excluir(id: number) {
+    this.alunoService.excluir(id);
+    this.ngOnInit();
+  }
+
+  editar(aluno: Aluno) {
+    this.router.navigate(['/aluno/cadastro'], { queryParams: { id: aluno.id } });
   }
 }

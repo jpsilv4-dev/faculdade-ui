@@ -1,33 +1,7 @@
-<p-card header="Cadastro de Aluno">
-
-  <div class="flex flex-wrap col-12 mb-3">
-    <button pButton type="button" class="p-button p-button-raised" icon="pi pi-caret-left" pTooltip="Voltar"
-      tooltipPosition="top" label="Voltar" routerLink="/alunos">
-    </button>
-  </div>
-
-  <form #form="ngForm" autocomplete="off" (ngSubmit)="salvar()">
-    <div class="grid">
-
-      <span class="col-12 mb-2">Nome</span>
-      <div class="col-12 md:col-6 lg:col-4">
-        <input pInputText name="nome" #nome="ngModel" [(ngModel)]="aluno.nome" required />
-      </div>
-
-      <span class="col-12 mb-2 mt-3">CPF</span>
-      <div class="col-12 md:col-6 lg:col-4">
-        <input pInputText name="cpf" #cpf="ngModel" [(ngModel)]="aluno.cpf" required />
-      </div>
-
-      <span class="col-12 mb-2 mt-3">Status</span>
-      <div class="col-12 md:col-6 lg:col-4 flex align-items-center">
-        <p-checkbox name="status" [binary]="true" [(ngModel)]="aluno.status" inputId="status"></p-checkbox>
-        <label for="status" class="ml-2">Ativo</label>
-      </div>
-
-      <div class="col-12 mt-4">
-        <button pButton type="submit" label="Salvar" icon="pi pi-save"></button>
-      </div>
-    </div>
-  </form>
-</p-card>
+<h2>Cadastro de Aluno</h2>
+<form (ngSubmit)="salvar()">
+  <input [(ngModel)]="aluno.nome" name="nome" placeholder="Nome" required />
+  <input [(ngModel)]="aluno.matricula" name="matricula" placeholder="Matrícula" required />
+  <input [(ngModel)]="aluno.email" name="email" placeholder="Email" required />
+  <button type="submit">Salvar</button>
+</form>

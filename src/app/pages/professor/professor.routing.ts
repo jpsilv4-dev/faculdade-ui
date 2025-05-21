@@ -1,27 +1,17 @@
-import { NgModule } from "@angular/core";
-import { RouterModule, Routes } from "@angular/router";
-import { ProfessorCadastroComponent } from "./professor-cadastro/professor-cadastro.component";
-import { ProfessorListaComponent } from "./professor-lista/professor-lista.component";
+import { Routes, RouterModule } from '@angular/router';
+import { NgModule } from '@angular/core';
 
+import { ProfessorListaComponent } from './professor-lista/professor-lista.component';
+import { ProfessorCadastroComponent } from './professor-cadastro/professor-cadastro.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: ProfessorCadastroComponent
-  },
-  {
-    path: 'novo',
-    component: ProfessorCadastroComponent
-  },
-  {
-    path: ':id',
-    component: ProfessorCadastroComponent
-  },
+  { path: 'professor', component: ProfessorListaComponent },
+  { path: 'professor/cadastro', component: ProfessorCadastroComponent },
+  { path: 'professor/cadastro/:id', component: ProfessorCadastroComponent }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
-
-export class AlunoRoutingModule { }
+export class ProfessorRoutingModule { }

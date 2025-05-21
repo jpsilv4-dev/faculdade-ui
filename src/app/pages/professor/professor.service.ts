@@ -1,31 +1,27 @@
 import { Injectable } from '@angular/core';
-import { Aluno } from '../core/models/aluno.model';
-import { mockaluno } from './mock.professor';
-@Injectable({
-  providedIn: 'root'
-})
+import { HttpClient } from '@angular/common/http';
+import { Professor } from '../core/models/models/professor.model';
+import { Observable } from 'rxjs';
+
+@Injectable({ providedIn: 'root' })
 export class ProfessorService {
-  private professor: Professor[] = structuredClone(mockprofessor);
-  listar(): Aluno[] {
-    return this.professor;
+  private apiUrl = 'http://localhost:3000/professores'; // JSON Server ou backend
+
+  constructor(private http: HttpClient) { }
+
+  listar(): Observable<Professor[]> {
+    return this.http.get<Professor[]>(this.apiUrl);
   }
 
-  adicionar(aluno: Aluno): void {
-    const novoId = this.professor.length > 0
-      ? Math.max(...this.professor.map(a => a.idaluno ?? 0)) + 1
-      : 1;
+  cadastrar(professor: Professor): Observable<Professor> {
+    return this.http.post<Professor>(this.apiUrl, professor);
+  }
 
-    const agora = new Date();
+  atualizar(professor: Professor): Observable<Professor> {
+    return this.http.put<Professor>(`${this.apiUrl}/${professor.id}`, professor);
+  }
 
-    const novoAluno: Aluno = {
-      ...aluno,
-      idaluno: novoId,
-      datacriacao: new Date(),
-      dataalteracao: new Date(),
-      usucriacao: 'admin',
-      usualteracao: 'admin'
-    };
-
-    this.professor.push(novoAluno);
+  excluir(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }

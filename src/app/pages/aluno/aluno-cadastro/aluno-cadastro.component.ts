@@ -1,19 +1,19 @@
 import { Component } from '@angular/core';
-import { Aluno } from '../../core/models/aluno.model';
+import { Aluno } from '../../core/models/models/aluno.model';
 import { AlunoService } from '../aluno.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-aluno-cadastro',
-  templateUrl: './aluno-cadastro.component.html',
+  templateUrl: './aluno-cadastro.component.html'
 })
 export class AlunoCadastroComponent {
-  aluno: Aluno = new Aluno();
+  aluno: Aluno = { id: 0, nome: '', matricula: '', email: '' };
 
-  constructor(private alunoService: AlunoService) { }
+  constructor(private alunoService: AlunoService, private router: Router) { }
 
   salvar() {
-    this.alunoService.adicionar(this.aluno);
-    alert('Aluno cadastrado com sucesso!');
-    this.aluno = new Aluno();
+    this.alunoService.salvar(this.aluno);
+    this.router.navigate(['/aluno/lista']);
   }
 }
